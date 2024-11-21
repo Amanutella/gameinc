@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+struct player{
+    char nome[60];
+    int tentativas;
+};
+
+struct player p1;
+
+//Função para exibir o menu
+void exibirMenu() {
+    printf("Jogo de Adivinhacao de Numeros\n");
+    printf("1. Iniciar Novo Jogo\n");
+    printf("2. Ver instrucoes \n");
+    printf("3. Visualizar tentativas\n");
+    printf("4. Sair\n");
+    printf("Escolha uma opcao:\n");
+}
+
+//funcao para exibir as instruções do jogo
+void instrucaoJogo(){
+    printf("Instrucoes do Jogo\n");
+    printf("O computador escolhe um numero aleatorio entre 1 e 100.\n");
+    printf("Seu objetivo e adivinhar esse numero.\n");
+    printf("A cada palpite, o jogo lhe dirah se o numero eh maior ou menor.\n");
+    printf("O objetivo eh adivinhar o numero escolhido com o menor numero de tentativas possivel.\n");
+}
+
+//Funcao para gerar um numero aleatório entre 1 e 100
+int numeroRand(){
+    return rand() % 100 + 1;
+}
+
+
+void registroNome(){
+    int palpites;
+    int numeroEscolhido = numeroRand();
+
+    //contator de tentativas
+    p1.tentativas = 0;
+
+    printf("Digite seu nome:\n");
+    scanf(" %[^\n]%*c", p1.nome);
+
+    printf("Bem-Vindo, %s!Vamos comecar o jogo:\n", p1.nome);
+
+    // Exibe o número aleatório para testes (remova essa linha depois)
+    printf("Numero aleatorio gerado: %d\n", numeroEscolhido);  // Linha de verificação!
+
+    //loop de tentativas
+
+    while(1){
+        printf("Digite seu palpite:\n");
+        scanf("%d", &palpites);
+
+        p1.tentativas++;
+
+        if(palpites == numeroEscolhido){
+            printf("Parabens %s! Voce acertou o numero: %d\n", p1.nome, numeroEscolhido);
+            break;//Sai do loop quando o jogador acertar o numero
+        }else
+            if (palpites > numeroEscolhido){
+                printf("Seu palpite eh maior que o numero.\n");
+                }else{
+                    printf("Seu palpite eh menor que o numero.\n");
+            }
+    }
+}
+void verTentativas(){
+    printf("Numero de tentativas feitas ate agora: %d\n", p1.tentativas);
+}
+void inicioJogo(){
+    int opcao;
+
+    do{
+        exibirMenu();
+        scanf("%d", &opcao);
+
+        switch(opcao){
+            case 1:
+                registroNome();
+                break;
+            case 2:
+                instrucaoJogo();
+                break;
+            case 3:
+                verTentativas();
+                break;
+            case 4:
+                printf("Saindo do Jogo... Ateh logo!\n");
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+    }while (opcao !=4);
+}
+
+int main(){
+    //inicializando o gerador de numeros aleatorios
+    srand(time(0));
+
+    //inicia o jogo
+    inicioJogo();
+    return 0;
+}
