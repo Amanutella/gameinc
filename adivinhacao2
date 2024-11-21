@@ -1,5 +1,4 @@
-/// FEITO COM MATRIZ E VETOR 
-
+//USANDO MATRIZ SESSAO
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,12 +15,14 @@ int numSessao = 0;
 
 //Função para exibir o menu
 void exibirMenu() {
+    printf("_____________________\n");
     printf("Jogo de Adivinhacao de Numeros\n");
     printf("1. Iniciar Novo Jogo\n");
     printf("2. Ver instrucoes \n");
     printf("3. Visualizar tentativas\n");
     printf("4. Sair\n");
     printf("Escolha uma opcao:\n");
+    printf("_____________________\n");
 }
 
 //funcao para exibir as instruções do jogo
@@ -58,7 +59,7 @@ void registroNome(){
     //loop de tentativas
 
     while(1){
-        printf("Digite seu palpite:\n");
+        printf("Digite seu palpite:");
         scanf("%d", &palpites);
 
         // Armazena o palpite da tentativa da sessao atual
@@ -87,6 +88,7 @@ void registroNome(){
     numSessao++;
 }
 void verTentativas(){
+    if(numSessao!=0){
     for(int i=0;i<numSessao;i++){
         printf("Sessao %d:\n", i+1);
         for(int j = 0; j < p1.tentativas[i]; j++) {  // Exibe cada tentativa na sessão
@@ -94,6 +96,9 @@ void verTentativas(){
             }
             printf("\n");
         }
+    }else{
+        printf("Ainda nao possui nenhuma tentativa!\n");
+    }
     }
 
 void inicioJogo(){
