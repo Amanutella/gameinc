@@ -42,7 +42,6 @@ int numeroRand(){
 
 void registroNome(){
     int palpites;
-    int tenta=0; // Contador de tentativas por sessão
     int numeroEscolhido = numeroRand();
 
     //Iniciador contator de tentativas
