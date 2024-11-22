@@ -87,11 +87,14 @@ void registroNome(){
     numSessao++;
 }
 void verTentativas(){
-    if(numSessao!=0){
-    for(int i=0;i<numSessao;i++){
-        printf("Sessao %d:\n", i+1);
-        for(int j = 0; j < p1.tentativas[i]; j++) {  // Exibe cada tentativa na sessão
-            printf("[%d] ", p1.sessao[i][j]);
+   if(numSessao !=0){
+        for(int i=0;i<numSessao;i++){
+            printf("Sessao %d:\n", i+1);
+            printf("Numero de tentativas: %d\n", p1.tentativa[i]);
+
+            printf("Palpites: \n");
+            for(int j=0; j < p1.tentativa[i];j++){
+                printf("[%d]", p1.sessao[i][j]);
             }
             printf("\n");
         }
